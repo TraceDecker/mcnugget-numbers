@@ -1,5 +1,7 @@
 package edu.cnm.deepdive;
 
+import java.util.Arrays;
+
 public class Frobenius {
 
   // Pack sizes are 6, 9, 20.
@@ -23,7 +25,19 @@ public class Frobenius {
    * @return true if value is a mcnugget number using the specified pack izes, false otherwise.
    */
   public static boolean isGeneralMcNugget(int value, int[] packSizes) {
-    return false; // TODO complete implementation for extra credit.
+
+    boolean flag = false;
+
+    if (packSizes.length == 1 || packSizes.length == 0) {
+      if (value >= 00 && value == 0 || isGeneralMcNugget(value - packSizes[0],null)) {
+        flag = true;
+      }
+      for (int packSize : packSizes) {
+        int[] ithElementArray = {packSize};
+        isGeneralMcNugget(value, ithElementArray);
+      }
+    }
+    return flag; // TODO complete implementation for extra credit.
   }
 
 }
